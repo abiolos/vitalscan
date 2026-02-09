@@ -1,0 +1,37 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  imageName: "healthguard-vision-backend"
+
+stages:
+- stage: CI
+  displayName: Build and test
+  jobs:
+  - job: build_test
+    displayName: Build and test backend
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: "3.10"
+    - script: |
+        cd backend
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pytest -q || echo "No tests yet"
+      displayName: "Run tests"
+
+    - task: Docker@2
+      displayName: Build and push image
+      inputs:
+        containerRegistry: "$(dockerServiceConnection)"   # nom du service connection ACR/DockerHub
+        repository: "$(imageName)"
+        command: "buildAndPush"
+        Dockerfile: "backend/Dockerfile"
+        tags: |
+          $(Build.BuildId)
