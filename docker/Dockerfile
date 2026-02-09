@@ -1,35 +1,22 @@
-# docker/Dockerfile
-
-# Stage 1 : build dependencies
+# Stage 1: build
 FROM python:3.10-slim AS builder
-
 WORKDIR /app
+COPY app/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
-
-COPY requirements.txt .
-
-RUN pip install --upgrade pip \
-    && pip wheel --no-cache-dir --no-deps -r requirements.txt -w /wheels
-
-# Stage 2 : runtime
+# Stage 2: runtime
 FROM python:3.10-slim
-
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
-
 WORKDIR /app
 
-RUN adduser --disabled-password --gecos "" appuser
-USER appuser
+# Installer pip et Gunicorn directement dans runtime
+RUN pip install --no-cache-dir gunicorn
 
-COPY --from=builder /wheels /wheels
-RUN pip install --no-cache-dir /wheels/*
+# Copier packages Python du builder (optionnel si packages dans requirements)
+COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
 
-COPY app ./app
+# Copier le code source
+COPY app/ .
 
 EXPOSE 8000
 
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "app.api:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "api:app"]
