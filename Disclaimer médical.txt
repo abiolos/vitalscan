@@ -1,0 +1,23 @@
+Disclaimer médical
+
+HealthGuard Vision est un outil de dépistage préventif basé sur l’analyse d’images.
+
+Les résultats fournis sont des estimations statistiques générées par des modèles d’intelligence artificielle, à partir de photos prises par l’utilisateur.
+
+Ces résultats ne constituent en aucun cas un diagnostic médical, et ne remplacent ni une consultation, ni un avis, ni un examen réalisé par un professionnel de santé qualifié.
+
+En cas de doute, de symptômes persistants ou de préoccupations concernant votre santé, consultez un médecin ou un professionnel de santé.
+
+📋 Règles d’utilisation
+
+En utilisant HealthGuard Vision, vous acceptez les règles suivantes :
+
+L’application doit être utilisée à des fins d’information et de prévention uniquement.
+
+Les résultats sont influencés par la qualité des images (lumière, cadrage, netteté).
+
+L’application ne fournit aucune prescription, traitement ou diagnostic médical.
+
+Les résultats ne doivent pas être utilisés pour prendre des décisions médicales sans avis professionnel.
+
+L’utilisateur reste responsable de l’interprétation et de l’usage des informations fournies.

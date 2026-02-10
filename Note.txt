@@ -1,0 +1,36 @@
+healthguard-vision/
+├── api/
+│   ├── app.py
+│   ├── routes/
+│   │   └── diagnose.py
+│   ├── models/
+│   │   ├── diabetes.tflite
+│   │   ├── anemia.tflite
+│   │   └── nutrition.tflite
+│   ├── services/
+│   ├── requirements.txt
+│   └── tests/
+├── mobile/
+│   └── react-native-app/
+├── docker/
+│   └── Dockerfile
+├── pipelines/
+│   └── azure-pipelines.yml
+└── README.md
+
+
+À la fin du Jour 2, on dois avoir :
+
+Une API Flask qui reçoit une image
+
+Un premier moteur ML 
+
+MongoDB connecté + stockage des analyses
+
+Tests automatisés (API + ML)
+
+Image Docker constructible
+
+Pipeline CI Azure DevOps qui build + teste
+
+Préparation du déploiement sur Azure Container Instances
